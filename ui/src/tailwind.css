@@ -1,0 +1,488 @@
+/* Outreach uses the shared Ryu app grammar. This file only defines the domain
+ * layout; color, type, controls, radii, focus, and motion come from Ryu. */
+@import "tailwindcss";
+@import "@ryu/ui/app-ui.css";
+@source "./";
+@source "../../../../packages/blocks/src/companion";
+@source "../../../../packages/ui/src/components/badge.tsx";
+@source "../../../../packages/ui/src/components/button.tsx";
+@source "../../../../packages/ui/src/components/dialog.tsx";
+@source "../../../../packages/ui/src/components/empty.tsx";
+@source "../../../../packages/ui/src/components/input.tsx";
+@source "../../../../packages/ui/src/components/label.tsx";
+@source "../../../../packages/ui/src/components/native-select.tsx";
+@source "../../../../packages/ui/src/components/textarea.tsx";
+
+html,
+body,
+#ryu-plugin-root {
+	height: 100%;
+	min-height: 100%;
+	margin: 0;
+}
+
+body {
+	overflow: hidden;
+	font-family: var(--font-sans);
+	font-size: 14px;
+	color: var(--foreground);
+	background: var(--background);
+}
+
+*,
+button,
+input,
+select,
+textarea {
+	border-color: var(--border);
+}
+
+.outreach-root {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 0;
+	overflow: auto;
+	background: var(--background);
+}
+
+.outreach-main {
+	gap: 1rem;
+	width: 100%;
+	max-width: 1440px;
+	padding: 1rem;
+	margin-inline: auto;
+}
+
+.outreach-overview {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding-bottom: 0.75rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-overview h2 {
+	font-size: 1.125rem;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+}
+
+.outreach-overview p,
+.outreach-muted {
+	color: var(--muted-foreground);
+}
+
+.outreach-overview p {
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+}
+
+.outreach-summary {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+	justify-content: flex-end;
+	font-size: 0.75rem;
+	color: var(--muted-foreground);
+}
+
+.outreach-summary strong {
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	color: var(--foreground);
+}
+
+.outreach-mode {
+	padding: 0.15rem 0.5rem;
+	color: var(--muted-foreground);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+}
+
+.outreach-layout {
+	display: grid;
+	grid-template-columns: 15rem minmax(0, 1fr) 18rem;
+	gap: 1rem;
+	align-items: start;
+	min-height: 0;
+}
+
+.outreach-panel {
+	min-width: 0;
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+}
+
+.outreach-campaigns {
+	overflow: hidden;
+}
+
+.outreach-campaigns > .ryu-app-section__heading {
+	padding: 0.75rem 0.875rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-filters {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 0.25rem;
+	padding: 0.5rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-filters [data-slot="button"] {
+	flex: 1 1 0;
+	min-width: 0;
+	padding-inline: 0.5rem;
+}
+
+.outreach-campaign-list {
+	max-height: 27rem;
+	overflow-y: auto;
+}
+
+.outreach-campaign-list .ryu-app-list__item {
+	padding: 0.65rem 0.75rem;
+}
+
+.outreach-campaign-note {
+	padding: 0.75rem;
+	font-size: 0.6875rem;
+	line-height: 1.45;
+	color: var(--muted-foreground);
+	border-top: 1px solid var(--border);
+}
+
+.outreach-detail-heading,
+.outreach-section-heading {
+	display: flex;
+	gap: 0.75rem;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.outreach-detail-heading h2 {
+	margin-top: 0.25rem;
+	font-size: 1.125rem;
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+.outreach-detail-heading > div > p:last-child {
+	max-width: 58ch;
+	margin-top: 0.25rem;
+	font-size: 0.8125rem;
+}
+
+.outreach-label {
+	font-size: 0.6875rem;
+	font-weight: 500;
+	color: var(--muted-foreground);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.outreach-workbench {
+	padding: 1rem;
+}
+
+.outreach-brief-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0;
+	margin-top: 1rem;
+	border-top: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-brief-grid > div {
+	min-width: 0;
+	padding: 0.75rem 0.5rem;
+}
+
+.outreach-brief-grid > div:nth-child(odd) {
+	border-right: 1px solid var(--border);
+}
+
+.outreach-brief-grid > div:nth-child(n + 3) {
+	border-top: 1px solid var(--border);
+}
+
+.outreach-brief-grid strong {
+	display: block;
+	margin-top: 0.35rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1.35;
+}
+
+.outreach-draft {
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-section-heading h3 {
+	font-size: 0.9375rem;
+	font-weight: 500;
+}
+
+.outreach-section-heading p {
+	margin-top: 0.25rem;
+	font-size: 0.75rem;
+}
+
+.outreach-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.375rem;
+	justify-content: flex-end;
+}
+
+.outreach-fields {
+	display: grid;
+	gap: 0.875rem;
+	margin-top: 1rem;
+}
+
+.outreach-body {
+	min-height: 9rem;
+	line-height: 1.5;
+}
+
+.outreach-recipients {
+	padding-top: 1rem;
+}
+
+.outreach-recipient-list {
+	margin-top: 0.75rem;
+	border-top: 1px solid var(--border);
+}
+
+.outreach-recipient {
+	display: flex;
+	gap: 0.75rem;
+	align-items: center;
+	min-width: 0;
+	padding: 0.65rem 0.25rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-recipient > input {
+	flex: 0 0 auto;
+	accent-color: var(--primary);
+}
+
+.outreach-recipient-copy {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.15rem;
+	min-width: 0;
+}
+
+.outreach-recipient-copy strong,
+.outreach-recipient-copy span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.outreach-recipient-copy strong {
+	font-size: 0.8125rem;
+	font-weight: 500;
+}
+
+.outreach-recipient-copy span {
+	font-size: 0.75rem;
+	color: var(--muted-foreground);
+}
+
+.outreach-inspector {
+	position: sticky;
+	top: 0;
+	gap: 0;
+	padding: 1rem;
+	border-left: 1px solid var(--border);
+}
+
+.outreach-inspector-heading {
+	padding-bottom: 1rem;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-inspector-heading h2 {
+	margin-top: 0.25rem;
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.outreach-inspector-heading p:last-child {
+	margin-top: 0.35rem;
+	font-size: 0.75rem;
+	line-height: 1.45;
+}
+
+.outreach-inspector-block {
+	display: grid;
+	gap: 0.75rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--border);
+}
+
+.outreach-inspector-label {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.75rem;
+	font-weight: 500;
+}
+
+.outreach-inline-note {
+	display: flex;
+	gap: 0.5rem;
+	align-items: flex-start;
+	font-size: 0.75rem;
+	line-height: 1.4;
+	color: var(--muted-foreground);
+}
+
+.outreach-inline-note svg {
+	flex: 0 0 auto;
+	margin-top: 0.1rem;
+	color: var(--primary);
+}
+
+.outreach-checks > div:not(.outreach-inspector-label) {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	font-size: 0.75rem;
+	color: var(--muted-foreground);
+}
+
+.outreach-checks svg {
+	flex: 0 0 auto;
+	color: var(--primary);
+}
+
+.outreach-inspector-actions {
+	padding-top: 1rem;
+}
+
+.outreach-inspector-actions > [data-slot="button"] {
+	width: 100%;
+}
+
+.outreach-inspector-actions > span {
+	font-size: 0.6875rem;
+	line-height: 1.4;
+	color: var(--muted-foreground);
+	text-align: center;
+}
+
+.outreach-alert {
+	display: flex;
+	gap: 0.75rem;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.625rem 0.75rem;
+	font-size: 0.8125rem;
+	color: var(--destructive);
+	background: color-mix(in oklch, var(--destructive) 8%, var(--card));
+	border: 1px solid color-mix(in oklch, var(--destructive) 25%, var(--border));
+	border-radius: var(--radius);
+}
+
+.outreach-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.outreach-form-fields {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.outreach-form-fields > div {
+	display: grid;
+	gap: 0.375rem;
+}
+
+.outreach-form-wide {
+	grid-column: 1 / -1;
+}
+
+.outreach-form-fields label {
+	font-size: 0.8125rem;
+	font-weight: 500;
+}
+
+.outreach-form-error {
+	font-size: 0.75rem;
+	color: var(--destructive);
+}
+
+.outreach-form-note {
+	margin-right: auto;
+	font-size: 0.6875rem;
+	color: var(--muted-foreground);
+}
+
+.outreach-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	font-size: 0.8125rem;
+	color: var(--muted-foreground);
+}
+
+@media (max-width: 1100px) {
+	.outreach-layout {
+		grid-template-columns: 14rem minmax(0, 1fr);
+	}
+
+	.outreach-inspector {
+		position: static;
+		grid-column: 1 / -1;
+	}
+}
+
+@media (max-width: 720px) {
+	.outreach-overview {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.outreach-summary {
+		justify-content: flex-start;
+	}
+
+	.outreach-layout,
+	.outreach-form-fields {
+		grid-template-columns: 1fr;
+	}
+
+	.outreach-form-wide {
+		grid-column: auto;
+	}
+
+	.outreach-detail-heading,
+	.outreach-section-heading {
+		flex-direction: column;
+	}
+
+	.outreach-actions {
+		justify-content: flex-start;
+	}
+}
