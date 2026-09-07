@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ryu.outreach",
+  "version": "0.1.0",
+  "description": "A local-first campaign workspace for thoughtful outbound work. Keep a small audience brief, draft with Ryu's configured model, review every recipient, and send only from an existing Ryu Mail inbox after an explicit confirmation. Outreach owns campaign intent and send status; Harbor CRM remains the system of record for customer data.",
+  "author": {
+    "name": "Ryu",
+    "url": "https://ryuhq.com"
+  },
+  "homepage": "https://github.com/amajorai/ryu-outreach",
+  "repository": "https://github.com/amajorai/ryu-outreach",
+  "keywords": ["outreach", "campaigns", "email", "sales", "follow-up"],
+  "extensions": {
+    "com.ryuhq.ryu": {
+      "id": "@ryu/outreach",
+      "displayName": "Outreach"
+    }
+  }
+}
