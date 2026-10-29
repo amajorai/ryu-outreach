@@ -1,0 +1,41 @@
+{
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@hugeicons/core-free-icons": "^4.3.5",
+    "@hugeicons/react": "^1.1.10",
+    "@ryu/app-host": "workspace:*",
+    "@ryu/blocks": "workspace:*",
+    "@ryu/ui": "workspace:*",
+    "@toolwind/corner-shape": "0.0.8-3",
+    "class-variance-authority": "^0.7.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@ryuhq/core-client": "workspace:*",
+    "zod": "catalog:"
+  },
+  "description": "The Ryu Outreach companion: campaign briefs, reviewed drafts, and explicit Mail sends.",
+  "devDependencies": {
+    "@happy-dom/global-registrator": "^21.0.4",
+    "@ryu/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5",
+    "vite": "^6",
+    "vite-plugin-singlefile": "^2.3.0",
+    "tailwindcss": "^4",
+    "@playwright/test": "^1.58.2"
+  },
+  "name": "@ryu/outreach-app",
+  "private": true,
+  "ryuCompanionInteractionMap": "e2e/companion-interactions.json",
+  "scripts": {
+    "build": "vite build",
+    "check-types": "tsc --noEmit",
+    "test": "bun test src e2e/interaction-map.test.mjs",
+    "test:e2e": "node ../../../apps/desktop/node_modules/@playwright/test/cli.js test --config=e2e/outreach-companion.playwright.config.ts"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

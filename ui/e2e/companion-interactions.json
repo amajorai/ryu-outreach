@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "package": "outreach",
+  "scope": "partial",
+  "expectedRows": 14,
+  "selector": {
+    "spec": "e2e/outreach-companion.spec.ts",
+    "config": "e2e/outreach-companion.playwright.config.ts"
+  },
+  "evidenceBoundary": "Playwright renders the built single-file Outreach Companion in the real sandboxed ExtensionHost. Deterministic local fixtures back Outreach storage, Mail inboxes and sends, model completion, catalog read, and toasts. Browser clipboard writeText is captured in the frame and exact text is asserted. This proves local UI state, retry, payloads, persistence, and reloadable host storage; it does not contact Core, a live model/provider, a real Mail transport, or an operating-system clipboard service. The Host fixture retains sandbox=allow-scripts without allow-forms, so the form's native requestSubmit/onSubmit event is not exercised; its Enter keydown validation and explicit submit button handler are covered.",
+  "assertions": [
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "538",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick",
+        "label": "Dismiss"
+      },
+      "testTitle": "validates, creates, dismisses the dialog, and reads back an empty-workspace campaign",
+      "assertionName": "Dismiss clears the send validation alert without issuing a Mail send.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Dismiss\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "574",
+        "component": "App",
+        "tag": "Tabs",
+        "events": "onValueChange"
+      },
+      "testTitle": "filters saved campaigns and opens the selected draft",
+      "assertionName": "Changing the filter tab excludes campaigns outside that status and restores the full list.",
+      "assertionMarker": "selectFilter(app, \"Drafts\")"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "585",
+        "component": "App",
+        "tag": "TabsTrigger",
+        "events": ""
+      },
+      "testTitle": "filters saved campaigns and opens the selected draft",
+      "assertionName": "The Sent tab selects its status and displays only the sent campaign.",
+      "assertionMarker": "selectFilter(app, \"Sent\")"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "597",
+        "component": "App",
+        "tag": "RyuAppListItem",
+        "events": "onClick"
+      },
+      "testTitle": "filters saved campaigns and opens the selected draft",
+      "assertionName": "Selecting the saved draft changes the campaign workbench to that campaign's objective.",
+      "assertionMarker": "campaignOptions(app).filter({ hasText: \"Operator follow-up\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "664",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick",
+        "label": "Draft with Ryu"
+      },
+      "testTitle": "drafts through the local model, retries a failure, and copies the saved body",
+      "assertionName": "Draft with Ryu sends the bounded campaign prompt, shows the first failure, and succeeds on retry with a persisted ready draft.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Draft with Ryu\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "673",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick",
+        "label": "Copy"
+      },
+      "testTitle": "drafts through the local model, retries a failure, and copies the saved body",
+      "assertionName": "Copy writes the exact persisted draft body through the frame clipboard API and emits the success toast.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Copy\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "726",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "selects an inbox, sends only checked recipients, and persists the model setting on blur",
+      "assertionName": "Select ready selects the exact ready-recipient set, Clear selection resets it, and the later send still contains only Maya.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Select ready\", exact: true }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "739",
+        "component": "App",
+        "tag": "Checkbox",
+        "events": "onCheckedChange"
+      },
+      "testTitle": "selects an inbox, sends only checked recipients, and persists the model setting on blur",
+      "assertionName": "Checking Maya selects exactly one recipient and the send bridge receives her personalized message only.",
+      "assertionMarker": "app.getByRole(\"checkbox\", { name: /Maya Chen/ })"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "762",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick",
+        "label": "Create campaign"
+      },
+      "testTitle": "validates, creates, dismisses the dialog, and reads back an empty-workspace campaign",
+      "assertionName": "The empty-workspace Create campaign action opens the form, validates recipients, then creates and selects a persisted campaign.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Create campaign\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "789",
+        "component": "App",
+        "tag": "NativeSelect",
+        "events": "onChange",
+        "label": "Sending inbox"
+      },
+      "testTitle": "selects an inbox, sends only checked recipients, and persists the model setting on blur",
+      "assertionName": "Selecting Partnerships routes the reviewed recipient through that exact inbox id.",
+      "assertionMarker": "inboxSelect.selectOption(\"inbox-partnerships\")"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "831",
+        "component": "App",
+        "tag": "Input",
+        "events": "onBlur,onChange",
+        "label": "Mesh LLM model id"
+      },
+      "testTitle": "selects an inbox, sends only checked recipients, and persists the model setting on blur",
+      "assertionName": "Blur saves the edited Mesh LLM model id to Outreach host storage and the fixture reads it back.",
+      "assertionMarker": "app.getByLabel(\"Mesh LLM model id\").fill(\"qwen3-local\")"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "888",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "selects an inbox, sends only checked recipients, and persists the model setting on blur",
+      "assertionName": "The send action sends one checked recipient to the selected inbox and marks only that recipient sent.",
+      "assertionMarker": "app.getByRole(\"button\", { name: \"Send 1 reviewed\" }).click()"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "924",
+        "component": "App",
+        "tag": "form",
+        "events": "onKeyDown,onSubmit"
+      },
+      "testTitle": "validates, creates, dismisses the dialog, and reads back an empty-workspace campaign",
+      "assertionName": "Pressing Enter in Campaign name runs the form keydown validation, keeps invalid input visible for correction, and the dialog CTA reads back the saved campaign; native requestSubmit is host-sandbox limited.",
+      "assertionMarker": "app.getByLabel(\"Campaign name\").press(\"Enter\")"
+    },
+    {
+      "row": {
+        "package": "outreach",
+        "source_file": "apps-store/outreach/ui/src/App.tsx",
+        "line": "1019",
+        "component": "App",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "validates, creates, dismisses the dialog, and reads back an empty-workspace campaign",
+      "assertionName": "The dialog Create campaign action persists valid audience, objective, and normalized recipients, then closes the dialog.",
+      "assertionMarker": "dialogCreateButton.click()"
+    }
+  ]
+}

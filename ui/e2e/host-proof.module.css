@@ -1,0 +1,23 @@
+.proof {
+	box-sizing: border-box;
+	min-height: 100vh;
+	padding: 12px;
+	font:
+		12px / 1.4 ui-sans-serif,
+		system-ui,
+		sans-serif;
+	color: #4e5b6d;
+	background: #eef1f5;
+}
+
+.proof > p {
+	margin: 0 0 8px;
+}
+
+.proof iframe {
+	width: 100%;
+	min-height: calc(100vh - 48px);
+	background: #fff;
+	border: 1px solid #d9dee7;
+	border-radius: 14px;
+}
